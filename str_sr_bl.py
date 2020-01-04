@@ -10,11 +10,6 @@ def blocks(s):
         if not added:
             output.append([c])
     output_str = ''
-    for a in sorted("21AxBz", key=lambda x: x.isupper()):
-        print(a)
-    for output_item in output:
-        output_str += ''.join(str(item) for item in output_item)
-        output_str += '-'
-    print(output_str[:-1])
+    print(sorted(s, key=lambda x: (x.isdigit(), x.isupper(), x)))
 
 blocks("21AxBzFCA")
