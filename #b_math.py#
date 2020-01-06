@@ -1,0 +1,17 @@
+def calculate(s):
+    num_stack = []
+    ops_stack = []
+    current_num = int(s[0])
+    i = 1
+    while i < len(s):
+        if s[i] == "p":
+            i += 4
+            current_num += int(s[i])
+            print(current_num)
+        else:
+            i += 5
+            current_num -= int(s[i])
+        i += 1
+    return current_num
+
+print(calculate("1minus2minus3minus4"))
