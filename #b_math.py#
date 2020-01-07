@@ -1,17 +1,29 @@
 def calculate(s):
-    num_stack = []
-    ops_stack = []
-    current_num = int(s[0])
-    i = 1
-    while i < len(s):
-        if s[i] == "p":
-            i += 4
-            current_num += int(s[i])
-            print(current_num)
+    left = 0
+    right = 0
+    right_num = 0
+    operation = ""
+    while s[right].isdigit():
+        right += 1
+    left_num = int(s[left:right])
+    while right <= len(s):
+        print ("right", right)
+        if s[right].isdigit():
+            right += 1
         else:
-            i += 5
-            current_num -= int(s[i])
-        i += 1
-    return current_num
+            right_num = int(s[left:right])
+            if operation:
+                if operation == "minus":
+                    left_num -= right_num
+                else:
+                    left_num += right_num
+            if s[right] == "m":
+                operation = "minus"
+                left += 5
+                right += 5
+            else:
+                operation = "plus"
+                left += 4
+                right += 4
 
-print(calculate("1minus2minus3minus4"))
+print(calculate("896minus738"))
