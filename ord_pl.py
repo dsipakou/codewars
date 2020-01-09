@@ -9,6 +9,6 @@ def order(sentence):
     for i in range(1, 10):
         if i in d:
             output.append(d[i])
-    print(' '.join(str(s) for s in output))
+    return ' '.join(str(s) for s in output)
 
 order("is2 Thi1s T4est 3a")
