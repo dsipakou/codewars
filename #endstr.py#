@@ -1,0 +1,15 @@
+def endless_string(string, start, length):
+    calc_start = start % len(string)
+    remain = length - (len(string) - calc_start)
+    whole = remain // len(string) - 1
+    end = remain % length
+    output = string[calc_start:] + string * whole + string [:end]
+    print(remain, whole, end)
+    return output
+
+print(endless_string('123456789', 3, 5))
+
+
+
+#  65 4321 0123 4567 89
+# "as dfas dfas dfas df"
