@@ -6,3 +6,6 @@ def max_multiple(divisor, bound):
         i -= 1
 
 print(max_multiple(2, 7))
+
+
+# return bound - (bound % divisor)
