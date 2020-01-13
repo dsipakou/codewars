@@ -1,0 +1,9 @@
+def min_num_taxis(requests):
+    d = {}
+    for i in requests:
+        for j in range(i[0], i[1]):
+            d[j] = d.get(j, 0) + 1
+    for i, v in d.items():
+        print(d)
+
+print(min_num_taxis([(1,4), (2,5), (1, 10), (4,5)]))
