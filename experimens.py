@@ -27,4 +27,25 @@ def caesar(string, key):
         output += chr(current_chr + 97)
     return output
 
-print(caesar("xyz", 2))
+def lps(string):
+    current_ls = string[0]
+    for i in range(1, len(string)):
+        left = right = i
+        current_ls = max(current_ls, helper(string, left, right), key=lambda x: len(x))
+    for i in range(1, len(string)):
+        left = i - 1
+        right = i
+        if string[left] == string[right]:
+            current_ls = max(current_ls, helper(string, left, right), key=lambda x: len(x))
+    return current_ls
+
+def helper(string, left, right):
+    while left > 0 and right < len(string) - 1:
+        if string[left - 1] == string[right + 1]:
+            left -= 1
+            right += 1
+        else:
+            break
+    return string[left:right+1]
+
+print(lps("assaaaaaasssss"))
