@@ -5,7 +5,6 @@ def get_score(arr):
     lines = 0
     for i, v in enumerate(arr):
         if v > 0:
-            print("Element: ", i, " output: ", output, " value: ", v, "level :", current_level, "lines: ", lines)
             output += levels[v - 1] * (current_level + 1)
             lines += v
             if lines >= 10:
