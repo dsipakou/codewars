@@ -1,6 +1,7 @@
 from datetime import datetime
 
 def strongest_even(n, m):
+    start_time = datetime.now()
     mem = {}
     start = n
     strongest = n
@@ -8,20 +9,13 @@ def strongest_even(n, m):
     start_time = datetime.now()
     if n % 2 == 1:
         start = n + 1
-    for i in range(start, m + 1, 2):
+    for i in range(start, m + 1):
         a = i
-        index = helper(mem, i)
+        index = list(str(bin(i)))[::-1].index('1')
         if index > max_even:
             strongest = i
             max_even = index
+    print(datetime.now() - start_time)
     return strongest
 
-def helper(mem, n):
-    if n in mem:
-        return mem[n]
-    if n % 2 == 1:
-        return 0
-    mem[n] = 1 + helper(mem, n / 2)
-    return mem[n]
-
-print(strongest_even(10,5880000))
+print(strongest_even(10,12000000))
