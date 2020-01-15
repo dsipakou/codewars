@@ -48,4 +48,20 @@ def helper(string, left, right):
             break
     return string[left:right+1]
 
-print(lps("assaaaaaasssss"))
+def group_an(words):
+    sort_words = [''.join(x for x in sorted(y)) for y in words]
+    d = {}
+    for index, value in enumerate(sort_words):
+        print(d)
+        d[value] = d.get(value, [])
+        d[value].append(index)
+    output = []
+    for i in d.values():
+        tmp = []
+        for j in i:
+            tmp.append(words[j])
+        output.append(tmp)
+    return output
+
+
+print(group_an(["yo", "act", "flop", "tac", "cat", "oy", "olfp"]))
