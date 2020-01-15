@@ -49,19 +49,11 @@ def helper(string, left, right):
     return string[left:right+1]
 
 def group_an(words):
-    sort_words = [''.join(x for x in sorted(y)) for y in words]
-    d = {}
-    for index, value in enumerate(sort_words):
-        print(d)
-        d[value] = d.get(value, [])
-        d[value].append(index)
-    output = []
-    for i in d.values():
-        tmp = []
-        for j in i:
-            tmp.append(words[j])
-        output.append(tmp)
-    return output
-
-
-print(group_an(["yo", "act", "flop", "tac", "cat", "oy", "olfp"]))
+    output = {}
+    for w in words:
+        sort_word = ''.join(sorted(w))
+        if sort_word in output:
+            output[sort_word].append(w)
+        else:
+            output[sort_word] = [w]
+    return list(output.values())
