@@ -69,3 +69,11 @@ class TempClass:
 
     def __doc__(self):
         return "Here is doc: " + self._title
+
+xs = [[1,2,3], [4,5,6]]
+ys = list(xs)
+xs.append([7,8,9])
+xs[0][0] = 'X'
+
+print(xs)
+print(ys)
