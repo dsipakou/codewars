@@ -70,10 +70,43 @@ class TempClass:
     def __doc__(self):
         return "Here is doc: " + self._title
 
-xs = [[1,2,3], [4,5,6]]
-ys = list(xs)
-xs.append([7,8,9])
-xs[0][0] = 'X'
+def long_sub(string):
+    d = {}
+    start = 0
+    output = [0, 1]
+    for i in range(len(string)):
+        if string[i] in d:
+            start = max(start, d[string[i]] + 1)
+        d[string[i]] = i
+        if output[1] - output[0] < i + 1 - start:
+            output = [start, i + 1]
+    return string[output[0]:output[1]]
 
-print(xs)
-print(ys)
+from decimal import *
+from functools import wraps
+from time import perf_counter
+
+def timeit_wrapper(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = perf_counter()
+        func_return_val = func(*args, **kwargs)
+        end = perf_counter()
+        print('{0:<10}.{1:<8} : {2:<8}'.format(func.__module__, func.__name__, end - start))
+        return func_return_val
+    return wrapper
+
+@timeit_wrapper
+def exp(x):
+    getcontext().prec += 2
+    i, lasts, s, fact, num = 0, 0, 1, 1, 1
+    while s != lasts:
+        lasts = s
+        i += 1
+        fact *= i
+        num *= x
+        s += num / fact
+    getcontext().prec -= 2
+    return +s
+
+print(exp(Decimal(400)))
