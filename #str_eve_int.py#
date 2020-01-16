@@ -17,16 +17,15 @@ def strongest_even(n, m):
     return strongest
 
 def str_even(n, m):
-    start_time = datetime.now()
-    start = '1'
-    while int(start, base=2) <= m:
-        start += '0'
-    start = start[:-1]
-    index = 1
-    while int(start, base=2) > m or int(start, base=2) < n:
-        index += 1
-        start = '1' * index + start[index:]
-    print(datetime.now() - start_time)
-    return int(start, base=2)
+    start = list(bin(n)[2:] + '1'*(len(bin(m)[2:]) - len(bin(n)[2:])))
+    output = start[:]
+    for i in range(len(start) - 1, 0, -1):
+        if start[i] != '0':
+            start[i] = '0'
+            start[i - 1] = '1'
+        current_int = int(''.join(s for s in start), base=2)
+        if current_int >= n and current_int <= m:
+            output = start[:]
+    return int(''.join(s for s in output), base=2)
 
-print(str_even(1408026681, 1589848532))
+print(str_even(129, 193))
