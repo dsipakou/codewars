@@ -109,4 +109,28 @@ def exp(x):
     getcontext().prec -= 2
     return +s
 
-print(exp(Decimal(400)))
+# This is the class of the input root. Do not edit it.
+class BinaryTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+def branchSums(root):
+    arr = []
+    helper(0, arr, root)
+        return arr
+
+def helper(sum, arr, node):
+    if node is None:
+            return
+
+        current_sum = sum + node.value
+
+        if node.left is None and node.right is None:
+            arr.append(current_sum)
+                return
+
+        helper(current_sum, arr, node.left)
+        helper(current_sum, arr, node.right)
