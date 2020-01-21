@@ -6,6 +6,9 @@ def infected(s):
     for i in range(len(s) - 1, 0, -1):
         if s[i] == "1" and s[i - 1] != "X":
             s[i - 1] = "1"
+    infected = s.count("1")
+    if infected == 0:
+        return 0
     return s.count("1") * 100 / (s.count("1") + s.count("0"))
 
 
