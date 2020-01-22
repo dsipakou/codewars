@@ -120,17 +120,66 @@ class BinaryTree:
 def branchSums(root):
     arr = []
     helper(0, arr, root)
-        return arr
+
 
 def helper(sum, arr, node):
     if node is None:
             return
 
-        current_sum = sum + node.value
+    current_sum = sum + node.value
 
-        if node.left is None and node.right is None:
-            arr.append(current_sum)
-                return
+    if node.left is None and node.right is None:
+        arr.append(current_sum)
+        return
 
-        helper(current_sum, arr, node.left)
-        helper(current_sum, arr, node.right)
+    helper(current_sum, arr, node.left)
+    helper(current_sum, arr, node.right)
+
+from datetime import datetime
+from datetime import timedelta
+
+def calendar_1(calendar1, dailyBounds1, calendar2, dailyBounds2, meetingDuration):
+    calendar1.insert(0, ['0:00', dailyBounds1[0]])
+    calendar1.append([dailyBounds1[1], '23:59'])
+    calendar2.insert(0, ['0:00', dailyBounds2[0]])
+    calendar2.append([dailyBounds2[1], '23:59'])
+    left1 = left2 = 1
+    merged_calendar = [calendar1[0], calendar2[0]]
+    while left1 < len(calendar1) and left2 < len(calendar2):
+        date1_start = datetime.strptime(calendar1[left1][0], '%H:%M')
+        date2_start = datetime.strptime(calendar2[left2][0], '%H:%M')
+        if left2 >= len(calendar2) or date1_start < date2_start:
+            merged_calendar.append(calendar1[left1])
+            left1 += 1
+        else:
+            merged_calendar.append(calendar2[left2])
+            left2 += 1
+    output = []
+    cur_max_end = None
+    verbal_cur_max_end = None
+    for i in range(len(merged_calendar) - 1):
+        cur_end = datetime.strptime(merged_calendar[i][1], '%H:%M')
+        if cur_max_end is None:
+            cur_max_end = cur_end
+            verbal_cur_max_end = merged_calendar[i][1]
+        if cur_end > cur_max_end:
+            cur_max_end = cur_end
+            verbal_cur_max_end = merged_calendar[i][1]
+        cur_max_end = max(cur_max_end, cur_end)
+        next_start = datetime.strptime(merged_calendar[i + 1][0], '%H:%M')
+        delta_time = timedelta(minutes=meetingDuration)
+        if next_start - cur_max_end >= delta_time:
+            output.append([verbal_cur_max_end, merged_calendar[i + 1][0]])
+    print(merged_calendar)
+    return output
+
+calendar1 = [['9:00', '10:30'], ['11:30', '13:00'], ['14:00', '16:00'], ['16:00', '18:00']]
+calendar2 = [['10:00', '11:30'], ['12:30', '14:30'], ['14:30', '15:00'], ['16:00', '17:00']]
+dailyBounds1 = ['8:00', '18:00']
+dailyBounds2 = ['7:00', '18:30']
+meetingDuration = 45
+
+
+
+
+print(calendar_1(calendar1, dailyBounds1, calendar2, dailyBounds2, meetingDuration))
