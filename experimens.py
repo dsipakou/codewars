@@ -182,4 +182,15 @@ meetingDuration = 45
 
 
 
-print(calendar_1(calendar1, dailyBounds1, calendar2, dailyBounds2, meetingDuration))
+def moveEl(array, toMove):
+    right = len(array) - 1
+    left = 0
+    while left < right:
+        if array[left] == toMove:
+            if array[right] != toMove:
+                array[right], array[left] = array[left], array[right]
+                left += 1
+            right -= 1
+        else:
+            left += 1
+    return array
