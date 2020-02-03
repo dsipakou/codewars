@@ -194,3 +194,15 @@ def moveEl(array, toMove):
         else:
             left += 1
     return array
+
+def balancedBrackets(string):
+    close_brackets = ']})'
+    mapping = {'}': '{', ']': '[', ')': '('}
+    stack = []
+    for s in string:
+        if s in close_brackets:
+            if not len(stack) or not stack.pop() == mapping[s]:
+                return False
+            else:
+                stack.append(s)
+    return len(stack) == 0
