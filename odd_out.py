@@ -4,8 +4,8 @@ def odd_out(s):
     while i >= 0:
         current = s[i]
         if s.count(current) % 2 == 1 and current not in output:
-            output.insert(0, current)
+            output.append(current)
         i -= 1
-    return output
+    return output[::-1]
 
-print(odd_out('aassddffggg'))
+print(odd_out('Whats going on'))
