@@ -1,12 +1,12 @@
 def exc_w(a, b):
-    len_a = len(a)
+    len_b = len(b)
     b.extend(reversed(a))
+    print(b, len_b)
     a.clear()
-    i = len_a - 1
+    i = len_b - 1
     while i >= 0:
         a.append(b[i])
+        del b[i]
         i -= 1
-    b = b[len_a:]
-    return a, b
 
 print(exc_w(['a', 'b', 'c'], [1,2,3]))
