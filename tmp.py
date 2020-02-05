@@ -15,5 +15,7 @@ class Temp:
         print(self.x)
 
 
-t = Temp()
-t.say(5)
+print(str(Temp))
+print(repr(Temp))
+print(str(2.0/11.0))
+print(repr(2.0/11.0))
