@@ -206,3 +206,35 @@ def balancedBrackets(string):
             else:
                 stack.append(s)
     return len(stack) == 0
+
+
+def zigzagTraverse(array):
+    direction = "down"
+    size = {'row': len(array) - 1, 'col': len(array[0]) - 1}
+    col = row = 0
+    output = []
+    while col <= size['col'] and row <= size['row']:
+        output.append(array[row][col])
+        if direction == "down":
+            if col == 0 or row == size['row']:
+                if row == size['row']:
+                    col += 1
+                else:
+                    row += 1
+                direction = "up"
+            else:
+                row += 1
+                col -= 1
+        else:
+            if row == 0 or col == size['col']:
+                if col == size['col']:
+                    row += 1
+                else:
+                    col += 1
+                direction = "down"
+            else:
+                row -= 1
+                col += 1
+    return output
+
+print(zigzagTraverse([[1,3,4,7,8], [2,5,6,9,10]]))
