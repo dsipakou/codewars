@@ -237,4 +237,39 @@ def zigzagTraverse(array):
                 col += 1
     return output
 
-print(zigzagTraverse([[1,3,4,7,8], [2,5,6,9,10]]))
+def knuth_morris_pratt(string, substring):
+    template = [-1]
+    left = 0
+    right = 1
+    while right < len(substring):
+        if substring[left] == substring[right]:
+            template.append(left)
+            left += 1
+            right += 1
+        else:
+            if left > 0:
+                left = template[left - 1] + 1
+            else:
+                template.append(-1)
+                right += 1
+    up = 0
+    down = 0
+    while down < len(substring) and up < len(string):
+        if down < 0:
+            down = 0
+
+        if string[up] == substring[down]:
+            up += 1
+            down += 1
+        else:
+            if down > 0:
+                down = template[down - 1] + 1
+            else:
+                up += 1
+    return True if down >= len(substring) else False
+
+
+
+
+print(knuth_morris_pratt("aefoaefcdaefcdaed", "aefcdaed"))
+# print(knuth_morris_pratt("aefoaefcdaefcdaed", "aecaefaecaecaee"))
