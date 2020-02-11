@@ -85,6 +85,7 @@ def long_sub(string):
 from decimal import *
 from functools import wraps
 from time import perf_counter
+import re
 
 def timeit_wrapper(func):
     @wraps(func)
@@ -269,7 +270,5 @@ def knuth_morris_pratt(string, substring):
     return True if down >= len(substring) else False
 
 
-
-
-print(knuth_morris_pratt("aefoaefcdaefcdaed", "aefcdaed"))
-# print(knuth_morris_pratt("aefoaefcdaefcdaed", "aecaefaecaecaee"))
+rrr = re.compile(r'ALTER TABLE\s+\"?\'?\w+\"?\'?\s+DROP COLUMN', re.IGNORECASE | re.MULTILINE)
+rrr1 = re.compile(r'ALTER TABLE')
