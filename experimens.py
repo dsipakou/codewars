@@ -283,14 +283,11 @@ def get_arr(string, substring):
     i = 0
     arr = []
     while i < len(string):
-        try:
-            idx = string[i:].index(substring) + i
-            if idx >= 0:
-                arr.append([idx, idx + len(substring)])
-                i = idx + 1
-            else:
-                break
-        except ValueError:
+        idx = string[i:].find(substring, i)
+        if idx >= 0:
+            arr.append([idx, idx + len(substring)])
+            i = idx + 1
+        else:
             break
     return arr
 
