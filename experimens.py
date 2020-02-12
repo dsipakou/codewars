@@ -272,3 +272,61 @@ def knuth_morris_pratt(string, substring):
 
 rrr = re.compile(r'ALTER TABLE\s+\"?\'?\w+\"?\'?\s+DROP COLUMN', re.IGNORECASE | re.MULTILINE)
 rrr1 = re.compile(r'ALTER TABLE')
+
+def underscore(string, substring):
+    arr = get_arr(string, substring)
+    arr = merge_arr(arr)
+    output = form_string(string, arr)
+    return output
+
+def get_arr(string, substring):
+    i = 0
+    arr = []
+    while i < len(string):
+        try:
+            idx = string[i:].index(substring) + i
+            if idx >= 0:
+                arr.append([idx, idx + len(substring)])
+                i = idx + 1
+            else:
+                break
+        except ValueError:
+            break
+    return arr
+
+def merge_arr(arr):
+    output = []
+    if len(arr) == 0:
+        return output
+    left = arr[0][0]
+    right = arr[0][1]
+    for i in range(len(arr)):
+        if arr[i][0] <= right:
+            right = arr[i][1]
+        else:
+            output.append([left, right])
+            left = arr[i][0]
+            right = arr[i][1]
+    output.append([left, right])
+    return output
+
+def form_string(string, arr):
+    if len(arr) == 0:
+        return string
+    left = 0
+    right = 0
+
+    output = ""
+    for i in range(len(arr)):
+        tmp_left = arr[i][0]
+        tmp_right = arr[i][1]
+        output += ''.join(s for s in string[left:tmp_left])
+        output += "_"
+        output += ''.join(s for s in string[tmp_left:tmp_right])
+        output += "_"
+        left = arr[i][1]
+    output += string[left:]
+    return output
+
+
+print(underscore("abcabcabcabcabc", "fff"))
