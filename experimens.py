@@ -325,5 +325,4 @@ def form_string(string, arr):
     output += string[left:]
     return output
 
-
-print(underscore("abcabcabcabcabc", "fff"))
+from urllib.parse import urlencode
