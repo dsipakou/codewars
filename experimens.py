@@ -326,3 +326,8 @@ def form_string(string, arr):
     return output
 
 from urllib.parse import urlencode
+
+def k_profit():
+    pass
+
+print(k_profit())
