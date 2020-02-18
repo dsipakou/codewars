@@ -330,4 +330,28 @@ from urllib.parse import urlencode
 def k_profit():
     pass
 
-print(k_profit())
+def quickselect(array, k):
+    return helper(array, k, 0, len(array) - 1)
+
+def helper(array, k, start, end):
+    pivot = start
+    left = start + 1
+    right = end
+    if right - left == 2:
+        return array[left + 1]
+    while left <= right:
+        if array[left] > array[pivot] and array[right] <= array[pivot]:
+            array[left], array[right] = array[right], array[left]
+        if array[left] < array[pivot]:
+            left += 1
+        if array[right] >= array[pivot]:
+            right -= 1
+    array[pivot], array[right] = array[right], array[pivot]
+    if right == k - 1:
+        return array[right]
+    elif right > k - 1:
+        return helper(array, k, start, right - 1)
+    else:
+        return helper(array, k, right + 1, end)
+
+print(quickselect([8,5,2,9,7,6,3], 3))
