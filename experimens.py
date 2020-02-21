@@ -360,4 +360,13 @@ def non_tail(ls):
 
     return ls[0] + non_tail(ls[1:])
 
-print(non_tail([1,2,3,4,5]))
+def tail(ls):
+    print(ls)
+    def helper(ls, acc):
+        print(ls, acc)
+        if len(ls) == 0:
+            return acc
+        return helper(ls[1:], ls[0] + acc)
+    return helper(ls, 0)
+
+print(tail([1,2,3,4,5]))
