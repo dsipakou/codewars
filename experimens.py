@@ -352,4 +352,12 @@ def helper(array, k, start, end):
     else:
         return helper(array, k, right + 1, end)
 
-print(quickselect([8,5,2,9,7,6,3], 3))
+
+def non_tail(ls):
+    print(ls)
+    if len(ls) == 0:
+        return 0
+
+    return ls[0] + non_tail(ls[1:])
+
+print(non_tail([1,2,3,4,5]))
