@@ -1,9 +1,9 @@
 def yes_no(arr):
     output = [False for _ in range(len(arr))]
     output1 = []
+    take = True
     while False in output:
         i = 0
-        take = True
         while i < len(arr):
             if take and not output[i]:
                 take = False
@@ -17,4 +17,4 @@ def yes_no(arr):
 
 
 
-print(yes_no([1,2,3,4,5,6,7]))
+print(yes_no(['this', 'code', 'is', 'right', 'the']))
