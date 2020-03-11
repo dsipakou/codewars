@@ -3,9 +3,12 @@ def rem(arr):
     for item in arr:
         if item not in output:
             output.append(item)
-    return output
 
-print(rem([
+    output1 = [eval(d1) for d1 in set(sorted(str(d) for d in arr))]
+    return output1
+
+print(rem(
+[
     {'data': {'id': 'A'}},
     {'data': {'id': 'A'}},
     {'data': {'id': 'A'}},
@@ -19,4 +22,5 @@ print(rem([
     {'data': {'id': 'B'}},
     {'data': {'id': 'B'}},
     {'data': {'id': 'E'}},
-    {'data': {'id': 'E'}}]))
+    {'data': {'id': 'E'}}
+]))
