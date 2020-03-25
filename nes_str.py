@@ -1,16 +1,21 @@
 def same_structure_as(original,other):
+    print(original, other)
     brackets = ("[", "]")
-    or_stack = []
-    ot_stack = []
+    or_stack = ""
+    ot_stack = ""
+    open = False
     for c in str(original):
-        if c in brackets:
-            or_stack.append(c)
+        if c == '\'':
+            open = not open
+        elif c in brackets and not open:
+            or_stack += c
         else:
-            or_stack.append("_")
+            or_stack += "_"
     for c in str(other):
-        if c in brackets:
-            ot_stack.append(c)
+        if c == '\'':
+            open = not open
+        elif c in brackets and not open:
+            ot_stack += c
         else:
-            ot_stack.append("_")
-    print(or_stack, ot_stack)
+            ot_stack += "_"
     return or_stack == ot_stack
