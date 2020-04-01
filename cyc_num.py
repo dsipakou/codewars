@@ -1,7 +1,7 @@
 def cyc_num(n):
     tmp = bin(n)[2:]
-    pivot = len(tmp) % 2
-    if pivot % 2 == 0:
+    pivot = len(tmp) // 2
+    if len(tmp) % 2 == 0:
         return False
     if tmp.count('0') > 1:
         return False
