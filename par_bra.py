@@ -1,24 +1,13 @@
 def balanced_parens(n):
     output = []
-    answ = solve(n, output)
-    return list(filter(lambda item: item.count("(") == n, answ))
+    return solve(n)
     
-def solve(n, output = []):
+def solve(n):
     if n == 0:
         return [""]
     if n == 1:
         return ["()"]
-    if n == 2:
-        return ["()()", "(())"]
-    for el in solve(n - 1):
-        output.append("()" + el)
-        output.append(el + "()")
-        output.append("(" + el + ")")
-    
-    return list(set(output))
-
-answer = balanced_parens(7)
-print(answer)
-print(len(answer))
-answer = list(filter(lambda item: item.count("(") == 7, answer))
-print(len(answer))
+    result = []
+    for s in balanced_parens(n - 1):
+        result += [s[:i]+"()"+s[i:] for i in range(0,len(s))]
+    return list(set(result))
