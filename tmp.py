@@ -15,7 +15,17 @@ class Temp:
         print(self.x)
 
 
-print(str(Temp))
-print(repr(Temp))
-print(str(2.0/11.0))
-print(repr(2.0/11.0))
+def infinite_gen():
+    n = 0
+    while True:
+        yield n
+        n += 1
+
+def check_gen():
+    yield("First string")
+    yield("Second string")
+
+genn = check_gen()
+print([i for i in check_gen()])
+print(next(genn))
+print(next(genn))
