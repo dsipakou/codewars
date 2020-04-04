@@ -10,4 +10,4 @@ for tt in range(t):
             rows += 1
         if len(set(rot_matrix[i])) < n:
             cols += 1
-    print(f"Case #{tt + 1}: {summ} {rows} {cols}")
+    print("Case #{}: {} {} {}".format(tt + 1, summ, rows, cols))
