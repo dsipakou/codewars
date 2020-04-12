@@ -11,7 +11,7 @@ public:
             stones.pop_back();
             if (first > second) {
                 stones.push_back(first - second);
-                i = stones.size();
+                i = stones.size() - 1;
                 while (i > 0) {
                     if (stones[i] < stones[i - 1]) {
                         int tmp = stones[i];
@@ -20,6 +20,7 @@ public:
                     } else {
                         break;
                     }
+                    i --;
                 }
             }
         }
