@@ -25,3 +25,19 @@ class Solution:
                     left = pivot + 1
             min_n = min(min_n, right) if binaryMatrix.get(row, right) == 1 else min_n
         return min_n if min_n < n else -1
+
+
+#### O(n+m)
+class Solution:
+    def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
+        m, n = binaryMatrix.dimensions()
+        min_n = n + 1
+        v = n - 1
+        h = 0
+        while h < m and v >= 0:
+            if binaryMatrix.get(h, v) == 0:
+                h += 1
+            else: 
+                min_n = v
+                v -= 1
+        return min_n if min_n < n else -1
