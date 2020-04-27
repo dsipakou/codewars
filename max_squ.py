@@ -1,14 +1,13 @@
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
-        output = 0
-        for j in range(len(matrix)):
-            for i in range(len(matrix[0])):
-                output = max(output, self.get_deep(matrix, i, j))
-        return output * output
-    
-    def get_deep(self, matrix, i, j):
-        if j >= len(matrix) or i >= len(matrix[0]) or matrix[j][i] == "0":
+        if len(matrix) == 0:
             return 0
-        return 1 + min(self.get_deep(matrix, i+1, j), 
-                       self.get_deep(matrix, i, j+1), 
-                       self.get_deep(matrix, i+1, j+1))
+        output = 0
+        dp = [[0 for _ in range(len(matrix[0])+1)] for _ in range(len(matrix) + 1)]
+        for j in range(1, len(matrix) + 1):
+            for i in range(1, len(matrix[0]) + 1):
+                if matrix[j - 1][i - 1] == '1':
+                    dp[j][i] = 1+min(dp[j-1][i], dp[j-1][i-1], dp[j][i-1])
+                    output = max(output, dp[j][i])
+        print(dp)
+        return output * output
