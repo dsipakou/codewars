@@ -38,23 +38,27 @@ class FirstUnique:
         self.ddl = None
         if len(nums) > 0:
             self.ddl = DLL(nums[0])
-            self._count[nums[0]] = True
+            self._count[nums[0]] = False
         for i in range(1, len(nums)):
             self.add(nums[i])
             
 
     def showFirstUnique(self) -> int:
-        print(self.ddl.root)
-        if self.ddl.root:
-            print(self.ddl.root.value)
-        return self.ddl.root.value if self.ddl.root else -1
+        node = self.ddl.root
+        while node:
+            if not self._count.get(node.value, False):
+                return node.value
+            node = node.next
+        else:
+            return -1
+
 
     def add(self, value: int) -> None:
         if value not in self._count:
-            self._count[value] = True
+            self._count[value] = False
             self.ddl.add(value)
-        else:
-            self.ddl.remove(value)
+        elif value in self._count:
+            self._count[value] = True
 
         
 
