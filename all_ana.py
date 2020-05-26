@@ -10,7 +10,7 @@ class Solution:
                 d[s[i]] -= 1
                 if d[s[i]] == 0:
                     find += 1
-                
+
             if i >= len(p):
                 if s[i - len(p)] in d:
                     d[s[i - len(p)]] += 1
