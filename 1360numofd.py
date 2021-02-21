@@ -8,8 +8,8 @@ class Solution:
         if year > 1971:
             days += sum(map(self.is_leap, range(1971, year)))
         days += 30 * month
-        if month > 1:
-            if year % 4 == 0:
+        if month > 2:
+            if self.is_leap(year) == 1:
                 days -= 1
             else:
                 days -= 2
