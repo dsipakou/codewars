@@ -3,26 +3,22 @@ class Solution:
         self.output = ''
         
     def decodeString(self, s: str) -> str:
-        i = 0
-        while i < len(s):
-            if s[i].isdigit():
-                subs, i = self.get_str(s, i + 2, int(s[i]))
-                self.output += subs
-            else:
-                self.output += s[i]
-            i += 1
-            
-        return self.output
+        output, _ = self.decString(s)
+        return output
     
-    def get_str(self, s, i=0, repeat=1):
-        print(s, i, repeat)
-        tmp_str = ''
-        index = i
-        while s[index] != ']':
-            if s[index].isdigit():
-                subs, i = self.get_str(s, index + 1, int(s[index]))
-                tmp_str += subs
+    def decString(self, s, index=0, repeat=1):
+        output = ''
+        tmpNum = ''
+        while index < len(s):
+            if s[index].isnumeric():
+                tmpNum += s[index]
+            elif s[index].isalpha():
+                output += s[index]
+            elif s[index] == '[':
+                tmp, index = self.decString(s, index + 1, int(tmpNum))
+                tmpNum = ''
+                output += tmp
             else:
-                tmp_str += s[index]
+                return output * repeat, index
             index += 1
-        return tmp_str * repeat, index
+        return output, index
