@@ -15,24 +15,26 @@ class Solution:
                     if sorted_d[i][1] > 0:
                         output += sorted_d[i][0]
                         sorted_d[i] = (sorted_d[i][0], sorted_d[i][1] - 1)
+                        count -= 1
                     dirr = 1
                 else:
                     if sorted_d[i][1] > 0:
                         output += sorted_d[i][0]
                         sorted_d[i] = (sorted_d[i][0], sorted_d[i][1] - 1)
+                        count -= 1
                     i += 1
             else:
                 if i == 0:
                     if sorted_d[i][1] > 0:
                         output += sorted_d[i][0]
                         sorted_d[i] = (sorted_d[i][0], sorted_d[i][1] - 1)
+                        count -= 1
                     dirr = 0
                 else:
                     if sorted_d[i][1] > 0:
                         output += sorted_d[i][0]
                         sorted_d[i] = (sorted_d[i][0], sorted_d[i][1] - 1)
+                        count -= 1
                     i -= 1
-            print(sorted_d)
-            count -= 1
         return output
             
