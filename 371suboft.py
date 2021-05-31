@@ -18,7 +18,6 @@ class Solution:
                 else:
                     if curry:
                         bin_output.append('0')
-                        curry = False
                     else:
                         bin_output.append('1')
             else:
