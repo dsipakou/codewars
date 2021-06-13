@@ -17,4 +17,6 @@ class Solution:
                     level.append(node.left)
                 if node.right:
                     level.append(node.right)
-        return level[0].val
+            if level:
+                queue.append(level)
+        return left.val
