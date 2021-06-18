@@ -1,16 +1,15 @@
 class Solution:
     def nextGreaterElements(self, nums: List[int]) -> List[int]:
-        output = []
+        output = [-1] * len(nums)
+        stack = []
         for i in range(len(nums)):
-            curr = nums[i]
-            cur_min = float('inf')
-            for j in range(i + 1, i + len(nums)):
-                curr_index = j % len(nums)
-                if nums[curr_index] > curr:
-                    cur_min = min(cur_min, nums[curr_index])
-                    break
-            if cur_min == float('inf'):
-                output.append(-1)
-            else:
-                output.append(cur_min)
+            while stack and (nums[stack[-1]] < nums[i]):
+                output[stack.pop()] = nums[i]
+            stack.append(i)
+        
+        for i in range(len(nums)):
+            while stack and (nums[stack[-1]] < nums[i]):
+                output[stack.pop()] = nums[i]
+            if not stack:
+                return
         return output
